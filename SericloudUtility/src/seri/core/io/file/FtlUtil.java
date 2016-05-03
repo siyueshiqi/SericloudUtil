@@ -34,15 +34,13 @@ import seri.core.io.model.JavaClass;
 
 public class FtlUtil {
 
-	static final String PATTERN_STR = "\\$\\{(.+)\\}";
+	static final String PATTERN_STR = "\\$\\{((\\w)+)\\}";
 	
 	static void generateModelClass(String ftlFileName, String classFileName) throws IOException {
 		Pattern pattern = Pattern.compile(PATTERN_STR);
-		System.out.println("apttern = " + pattern.pattern());
 		
 		BufferedReader in = null;
 		String line = null;
-
 		try {
 			in = new BufferedReader(new FileReader(ftlFileName));
 
@@ -71,9 +69,11 @@ public class FtlUtil {
 	}
 	
 	public static void main(String[] args) {
-		String filePathStr = "src/seri/core/io/test/aFormat.ftl";
+		String exeFilePathStr = "src/seri/core/io/test/a.ftl";
+		String ctrlFilePathStr = "src/seri/core/io/test/b.ftl";
 		try {
-			generateModelClass(filePathStr, "src/seri/core/io/test/ExeEvalMap.java");
+			generateModelClass(exeFilePathStr, "src/seri/core/io/test/ExeEvalMap.java");
+			generateModelClass(ctrlFilePathStr, "src/seri/core/io/test/CtrlEvalMap.java");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

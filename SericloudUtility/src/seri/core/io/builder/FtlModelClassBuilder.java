@@ -32,6 +32,7 @@ import seri.core.lang.JavaSrcElm;
 public class FtlModelClassBuilder {
 
 	private static final String FTL_MAP_ATTR = "ftlMap";
+	private static final String FTL_OBJ_ATTR = "ftlObj";
 	private static final String DECLARE_FTL_MAP = "private Map<String, String> " + FTL_MAP_ATTR + " = new HashMap<String, String>();";
 	
 	private static FtlModelClassBuilder ftlModelClassBuilder;
@@ -82,6 +83,9 @@ public class FtlModelClassBuilder {
 		// Close the class
 		srcCode.append(GlobalConst.LINE_SEPARATOR);
 		srcCode.append(JavaSrcElm.RIGHT_BRACKET);
+		
+		printAllAttrsMapPutCode(javaClass.getAttrList());
+		printAllAttrsObjSetCode(javaClass.getAttrList(), javaClass);
 
 		return srcCode.toString();
 	}
@@ -111,6 +115,8 @@ public class FtlModelClassBuilder {
 	}
 
 	private String exportSetterMethods(List<String> attrList) {
+		if (attrList == null)
+			return "";
 		StringBuffer srcCode = new StringBuffer();
 		int attrListSize = attrList.size();
 		if (attrListSize == 0) {
@@ -188,6 +194,55 @@ public class FtlModelClassBuilder {
 		}
 		srcCode.append(GlobalConst.LINE_SEPARATOR);
 		return srcCode.toString();
+	}
+	
+	private void printAllAttrsMapPutCode(List<String> attrList) {
+		if (attrList == null) {
+			return;
+		}
+		System.out.println("-----------------Begin-----------------");
+		System.out.println("Map<String, Object> "+ FTL_MAP_ATTR + " = new HashMap<String, Object>();");
+		for (String attrName : attrList) {
+			StringBuffer srcCode = new StringBuffer();
+			srcCode.append(FTL_MAP_ATTR);
+			srcCode.append(JavaSrcElm.DOT);
+			srcCode.append(JavaSrcElm.PUT);
+			srcCode.append(JavaSrcElm.LEFT_PARENTHESIS);
+			srcCode.append(JavaSrcElm.DOUBLE_QUOTATION);
+			srcCode.append(attrName);
+			srcCode.append(JavaSrcElm.DOUBLE_QUOTATION);
+			srcCode.append(JavaSrcElm.COMMA);
+			srcCode.append(JavaSrcElm.DOUBLE_QUOTATION);
+			srcCode.append(attrName);
+			srcCode.append(JavaSrcElm.DOUBLE_QUOTATION);
+			srcCode.append(JavaSrcElm.RIGHT_PARENTHESIS);
+			srcCode.append(JavaSrcElm.SEMICOLON);
+			System.out.println(srcCode.toString());
+		}
+		System.out.println("-----------------End-----------------");
+	}
+	
+	private void printAllAttrsObjSetCode(List<String> attrList, JavaClass javaClass) {
+		if (attrList == null) {
+			return;
+		}
+		System.out.println("-----------------Begin-----------------");
+		System.out.println(javaClass.getSimpleName() + " " + FTL_OBJ_ATTR + " = new " + javaClass.getSimpleName() + "();");
+		for (String attrName : attrList) {
+			StringBuffer srcCode = new StringBuffer();
+			srcCode.append(FTL_OBJ_ATTR);
+			srcCode.append(JavaSrcElm.DOT);
+			srcCode.append(JavaSrcElm.SET);
+			srcCode.append(StringHelper.toUpperCase(attrName, 0));
+			srcCode.append(JavaSrcElm.LEFT_PARENTHESIS);
+			srcCode.append(JavaSrcElm.DOUBLE_QUOTATION);
+			srcCode.append(attrName);
+			srcCode.append(JavaSrcElm.DOUBLE_QUOTATION);
+			srcCode.append(JavaSrcElm.RIGHT_PARENTHESIS);
+			srcCode.append(JavaSrcElm.SEMICOLON);
+			System.out.println(srcCode.toString());
+		}
+		System.out.println("-----------------End-----------------");
 	}
 
 	private String exportAllAttrs(List<String> attrList) {
