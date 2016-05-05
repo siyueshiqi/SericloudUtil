@@ -36,7 +36,6 @@ import java.io.InputStreamReader;
  * <code>FileUtil</code> is a class that define the basic file operation
  * @author Sericloud
  * @date May 2, 2016
- *
  */
 public class FileUtil {
 	
