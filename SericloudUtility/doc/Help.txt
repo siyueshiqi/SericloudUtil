@@ -35,5 +35,7 @@
 			[FtlUtil.generateModelClass] can be used to generate a Model Class.
 			And this Model Class provide [set] method to set 'property' instead of Using [put] method of Map.
 			Then use [getMap] of Model Class method to get Map object.
-			You can see more in the demo code.seri.core.io.
+			You can see more in the package "code.seri.core.io.test".
+				---- FtlUtilDemo.java
+				---- WordGeneratorDemo.java
 			
