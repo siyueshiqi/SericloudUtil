@@ -1,0 +1,39 @@
+
+1.How to generate Word?
+
+	(1) Save Word as XML.
+	
+	(2) Open XML by Word or WPS.
+	
+	(3) Fill content by using format like ${property}. As unique identification, 'property' is the name to mark its place.
+	
+	(4) Save XML as FTL(FreeMarker Template Language).
+	
+	(5) Use WordGenerator Class to read FTL file and generate word.
+	
+		<1> Call [WordGenerator.configureWithFileNameList(String basePkgPath, List<String> fileNameList)] method to configure FreeMarker.
+			@basePkgPath : A [String] of FTL file directory.
+			@fileNameList: A [List] object of all FTL file name.
+		   
+		    Or Call [WordGenerator.configureWithTemplateMap(String basePkgPath, Map<String, String> templatesMap)] method to configure FreeMarker.
+			@basePkgPath : A [String] of FTL file directory.
+			@templatesMap: A [Map] object.
+					Map.Key ： template name. User can give FTL file a template name, then can use the template name to get corresponding FTL file.
+					Map.value ： FTL file name.
+							
+		<2> Call [WordGenerator.createDocWithDataMapAndTemplateName(Map<?, ?> dataMap, String templateName, String docPath)] method to generate Word.
+			@dataMap :A [Map] object.
+				Map.key : the 'property' in the Step(3). 
+				Map.value : the content which will be used to replace the 'property' in the FTL file, to generate Word.
+			@templateName : 
+				IF you call [configureWithFileNameList] to configure before, 'templateName' is file name in 'fileNameList'.
+				IF you call [configureWithTemplateMap] to configure before, 'templateName' is key in 'templatesMap'.
+			@docPath : the path to generate Word.
+			
+		<*3> FtlUtil Class can be used to generate a Model Class.
+		
+			[FtlUtil.generateModelClass] can be used to generate a Model Class.
+			And this Model Class provide [set] method to set 'property' instead of Using [put] method of Map.
+			Then use [getMap] of Model Class method to get Map object.
+			You can see more in the demo code.seri.core.io.
+			
