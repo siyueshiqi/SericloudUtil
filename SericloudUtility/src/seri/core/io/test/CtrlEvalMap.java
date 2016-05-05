@@ -13,6 +13,10 @@ public class CtrlEvalMap implements Serializable {
         this.ftlMap.put("proName",proName);
     }
 
+    public void setProAddr(String proAddr) {
+        this.ftlMap.put("proAddr",proAddr);
+    }
+
     public void setProBegDate(String proBegDate) {
         this.ftlMap.put("proBegDate",proBegDate);
     }
@@ -23,6 +27,10 @@ public class CtrlEvalMap implements Serializable {
 
     public void setDirector(String director) {
         this.ftlMap.put("director",director);
+    }
+
+    public void setDirectorTel(String directorTel) {
+        this.ftlMap.put("directorTel",directorTel);
     }
 
     public void setContractNum(String contractNum) {

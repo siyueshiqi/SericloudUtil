@@ -113,6 +113,8 @@ public class WordGenerator {
 		String pass = "□优秀 ■合格 □基本合格 □不合格";
 		String basic = "□优秀 □合格 ■基本合格 □不合格";
 		String fail = "□优秀 □合格 □基本合格 ■不合格";
+		String noScore = "□优秀 □合格 □基本合格 □不合格";
+		
 		Map<String, Object> ftlMap = new HashMap<String, Object>();
 		ftlMap.put("proName","proName");
 		ftlMap.put("proAddr","proAddr");
@@ -130,24 +132,26 @@ public class WordGenerator {
 		ftlMap.put("exeAddr","exeAddr");
 		ftlMap.put("exeContact","exeContact");
 		ftlMap.put("exeTel","exeTel");
-		ftlMap.put("arrivingScore","arrivingScore");
+		ftlMap.put("arrivingScore",excellence);
 		ftlMap.put("arrivingDesc","arrivingDesc");
-		ftlMap.put("scheduleScore","scheduleScore");
+		ftlMap.put("scheduleScore",fail);
 		ftlMap.put("scheduleDesc","scheduleDesc");
-		ftlMap.put("qualityScore","qualityScore");
+		ftlMap.put("qualityScore",basic);
 		ftlMap.put("qualityDesc","qualityDesc");
-		ftlMap.put("securityScore","securityScore");
+		ftlMap.put("securityScore",pass);
 		ftlMap.put("securityDesc","securityDesc");
-		ftlMap.put("salaryScore","salaryScore");
+		ftlMap.put("salaryScore",fail);
 		ftlMap.put("salaryDesc","salaryDesc");
-		ftlMap.put("performanceScore","performanceScore");
+		ftlMap.put("performanceScore",noScore);
 		ftlMap.put("performanceDesc","performanceDesc");
 		
 		CtrlEvalMap ftlObj = new CtrlEvalMap();
 		ftlObj.setProName("proName");
+		ftlObj.setProAddr("proAddr");
 		ftlObj.setProBegDate("proBegDate");
 		ftlObj.setProEndDate("proEndDate");
 		ftlObj.setDirector("director");
+		ftlObj.setDirectorTel("directorTel");
 		ftlObj.setContractNum("contractNum");
 		ftlObj.setContractCost("contractCost");
 		ftlObj.setConstructionUnit("constructionUnit");
@@ -158,23 +162,23 @@ public class WordGenerator {
 		ftlObj.setCtrlAddr("ctrlAddr");
 		ftlObj.setCtrlContact("ctrlContact");
 		ftlObj.setCtrlTel("ctrlTel");
-		ftlObj.setArrivingScore("arrivingScore");
+		ftlObj.setArrivingScore(fail);
 		ftlObj.setArrivingDesc("arrivingDesc");
-		ftlObj.setQualityScore("qualityScore");
+		ftlObj.setQualityScore(excellence);
 		ftlObj.setQualityDesc("qualityDesc");
-		ftlObj.setInvestmentScore("investmentScore");
+		ftlObj.setInvestmentScore(pass);
 		ftlObj.setInvestmentDesc("investmentDesc");
-		ftlObj.setScheduleScore("scheduleScore");
+		ftlObj.setScheduleScore(noScore);
 		ftlObj.setScheduleDesc("scheduleDesc");
-		ftlObj.setSecurityScore("securityScore");
+		ftlObj.setSecurityScore(basic);
 		ftlObj.setSecurityDesc("securityDesc");
-		ftlObj.setContractScore("contractScore");
+		ftlObj.setContractScore(excellence);
 		ftlObj.setContractDesc("contractDesc");
-		ftlObj.setInformationScore("informationScore");
+		ftlObj.setInformationScore(excellence);
 		ftlObj.setInformationDesc("informationDesc");
-		ftlObj.setOrganizingScore("organizingScore");
+		ftlObj.setOrganizingScore(basic);
 		ftlObj.setOrganizingDesc("organizingDesc");
-		ftlObj.setPerformanceScore("performanceScore");
+		ftlObj.setPerformanceScore(basic);
 		ftlObj.setPerformanceDesc("performanceDesc");
 
 		try {
@@ -187,13 +191,13 @@ public class WordGenerator {
 			
 			List<String> fileNameList = new ArrayList<String>();
 			fileNameList.add("a.ftl");
-			fileNameList.add("bFormat.ftl");
+			fileNameList.add("b.ftl");
 			WordGenerator.configureWithFileNameList(basePkgPath, fileNameList);
 			
 			String exePath = "src/seri/study/file/word/exe.doc";
 			String ctrlPath = "src/seri/study/file/word/ctrl.doc";
 			WordGenerator.createDocWithDataMapAndTemplateName(ftlMap, "a.ftl", exePath);
-			WordGenerator.createDocWithDataMapAndTemplateName(ftlMap, "bFormat.ftl", ctrlPath);
+			WordGenerator.createDocWithDataMapAndTemplateName(ftlObj.getMap(), "b.ftl", ctrlPath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
