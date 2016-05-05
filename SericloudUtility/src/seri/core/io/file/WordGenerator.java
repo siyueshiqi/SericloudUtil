@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import seri.core.io.test.CtrlEvalMap;
+import seri.core.io.test.CtrlEvalObj;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -106,100 +106,5 @@ public class WordGenerator {
 			throw new RuntimeException(ex);
 		}
 		return f;
-	}
-
-	public static void main(String[] args) {
-		String excellence = "■优秀 □合格 □基本合格 □不合格";
-		String pass = "□优秀 ■合格 □基本合格 □不合格";
-		String basic = "□优秀 □合格 ■基本合格 □不合格";
-		String fail = "□优秀 □合格 □基本合格 ■不合格";
-		String noScore = "□优秀 □合格 □基本合格 □不合格";
-		
-		Map<String, Object> ftlMap = new HashMap<String, Object>();
-		ftlMap.put("proName","proName");
-		ftlMap.put("proAddr","proAddr");
-		ftlMap.put("proBegDate","proBegDate");
-		ftlMap.put("proEndDate","proEndDate");
-		ftlMap.put("manager","manager");
-		ftlMap.put("managerTel","managerTel");
-		ftlMap.put("contractNum","contractNum");
-		ftlMap.put("contractCost","contractCost");
-		ftlMap.put("constructionUnit","constructionUnit");
-		ftlMap.put("constructionAddr","constructionAddr");
-		ftlMap.put("consContact","consContact");
-		ftlMap.put("consTel","consTel");
-		ftlMap.put("executionCompany","executionCompany");
-		ftlMap.put("exeAddr","exeAddr");
-		ftlMap.put("exeContact","exeContact");
-		ftlMap.put("exeTel","exeTel");
-		ftlMap.put("arrivingScore",excellence);
-		ftlMap.put("arrivingDesc","arrivingDesc");
-		ftlMap.put("scheduleScore",fail);
-		ftlMap.put("scheduleDesc","scheduleDesc");
-		ftlMap.put("qualityScore",basic);
-		ftlMap.put("qualityDesc","qualityDesc");
-		ftlMap.put("securityScore",pass);
-		ftlMap.put("securityDesc","securityDesc");
-		ftlMap.put("salaryScore",fail);
-		ftlMap.put("salaryDesc","salaryDesc");
-		ftlMap.put("performanceScore",noScore);
-		ftlMap.put("performanceDesc","performanceDesc");
-		
-		CtrlEvalMap ftlObj = new CtrlEvalMap();
-		ftlObj.setProName("proName");
-		ftlObj.setProAddr("proAddr");
-		ftlObj.setProBegDate("proBegDate");
-		ftlObj.setProEndDate("proEndDate");
-		ftlObj.setDirector("director");
-		ftlObj.setDirectorTel("directorTel");
-		ftlObj.setContractNum("contractNum");
-		ftlObj.setContractCost("contractCost");
-		ftlObj.setConstructionUnit("constructionUnit");
-		ftlObj.setConstructionAddr("constructionAddr");
-		ftlObj.setConsContact("consContact");
-		ftlObj.setConsTel("consTel");
-		ftlObj.setCtrlCompany("ctrlCompany");
-		ftlObj.setCtrlAddr("ctrlAddr");
-		ftlObj.setCtrlContact("ctrlContact");
-		ftlObj.setCtrlTel("ctrlTel");
-		ftlObj.setArrivingScore(fail);
-		ftlObj.setArrivingDesc("arrivingDesc");
-		ftlObj.setQualityScore(excellence);
-		ftlObj.setQualityDesc("qualityDesc");
-		ftlObj.setInvestmentScore(pass);
-		ftlObj.setInvestmentDesc("investmentDesc");
-		ftlObj.setScheduleScore(noScore);
-		ftlObj.setScheduleDesc("scheduleDesc");
-		ftlObj.setSecurityScore(basic);
-		ftlObj.setSecurityDesc("securityDesc");
-		ftlObj.setContractScore(excellence);
-		ftlObj.setContractDesc("contractDesc");
-		ftlObj.setInformationScore(excellence);
-		ftlObj.setInformationDesc("informationDesc");
-		ftlObj.setOrganizingScore(basic);
-		ftlObj.setOrganizingDesc("organizingDesc");
-		ftlObj.setPerformanceScore(basic);
-		ftlObj.setPerformanceDesc("performanceDesc");
-
-		try {
-			String basePkgPath = "/seri/core/io/test";
-			
-//			Map<String, String> templateMap = new HashMap<String, String>();
-//			templateMap.put("a", "aFormat.ftl");
-//			templateMap.put("b", "b.ftl");
-//			WordGenerator.configureWithTemplateMap(basePkgPath, templateMap);
-			
-			List<String> fileNameList = new ArrayList<String>();
-			fileNameList.add("a.ftl");
-			fileNameList.add("b.ftl");
-			WordGenerator.configureWithFileNameList(basePkgPath, fileNameList);
-			
-			String exePath = "src/seri/study/file/word/exe.doc";
-			String ctrlPath = "src/seri/study/file/word/ctrl.doc";
-			WordGenerator.createDocWithDataMapAndTemplateName(ftlMap, "a.ftl", exePath);
-			WordGenerator.createDocWithDataMapAndTemplateName(ftlObj.getMap(), "b.ftl", ctrlPath);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

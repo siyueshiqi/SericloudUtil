@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 
-public class ExeEvalMap implements Serializable {
+public class CtrlEvalObj implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Map<String, String> ftlMap = new HashMap<String, String>();
@@ -25,12 +25,12 @@ public class ExeEvalMap implements Serializable {
         this.ftlMap.put("proEndDate",proEndDate);
     }
 
-    public void setManager(String manager) {
-        this.ftlMap.put("manager",manager);
+    public void setDirector(String director) {
+        this.ftlMap.put("director",director);
     }
 
-    public void setManagerTel(String managerTel) {
-        this.ftlMap.put("managerTel",managerTel);
+    public void setDirectorTel(String directorTel) {
+        this.ftlMap.put("directorTel",directorTel);
     }
 
     public void setContractNum(String contractNum) {
@@ -57,20 +57,20 @@ public class ExeEvalMap implements Serializable {
         this.ftlMap.put("consTel",consTel);
     }
 
-    public void setExecutionCompany(String executionCompany) {
-        this.ftlMap.put("executionCompany",executionCompany);
+    public void setCtrlCompany(String ctrlCompany) {
+        this.ftlMap.put("ctrlCompany",ctrlCompany);
     }
 
-    public void setExeAddr(String exeAddr) {
-        this.ftlMap.put("exeAddr",exeAddr);
+    public void setCtrlAddr(String ctrlAddr) {
+        this.ftlMap.put("ctrlAddr",ctrlAddr);
     }
 
-    public void setExeContact(String exeContact) {
-        this.ftlMap.put("exeContact",exeContact);
+    public void setCtrlContact(String ctrlContact) {
+        this.ftlMap.put("ctrlContact",ctrlContact);
     }
 
-    public void setExeTel(String exeTel) {
-        this.ftlMap.put("exeTel",exeTel);
+    public void setCtrlTel(String ctrlTel) {
+        this.ftlMap.put("ctrlTel",ctrlTel);
     }
 
     public void setArrivingScore(String arrivingScore) {
@@ -81,20 +81,28 @@ public class ExeEvalMap implements Serializable {
         this.ftlMap.put("arrivingDesc",arrivingDesc);
     }
 
-    public void setScheduleScore(String scheduleScore) {
-        this.ftlMap.put("scheduleScore",scheduleScore);
-    }
-
-    public void setScheduleDesc(String scheduleDesc) {
-        this.ftlMap.put("scheduleDesc",scheduleDesc);
-    }
-
     public void setQualityScore(String qualityScore) {
         this.ftlMap.put("qualityScore",qualityScore);
     }
 
     public void setQualityDesc(String qualityDesc) {
         this.ftlMap.put("qualityDesc",qualityDesc);
+    }
+
+    public void setInvestmentScore(String investmentScore) {
+        this.ftlMap.put("investmentScore",investmentScore);
+    }
+
+    public void setInvestmentDesc(String investmentDesc) {
+        this.ftlMap.put("investmentDesc",investmentDesc);
+    }
+
+    public void setScheduleScore(String scheduleScore) {
+        this.ftlMap.put("scheduleScore",scheduleScore);
+    }
+
+    public void setScheduleDesc(String scheduleDesc) {
+        this.ftlMap.put("scheduleDesc",scheduleDesc);
     }
 
     public void setSecurityScore(String securityScore) {
@@ -105,12 +113,28 @@ public class ExeEvalMap implements Serializable {
         this.ftlMap.put("securityDesc",securityDesc);
     }
 
-    public void setSalaryScore(String salaryScore) {
-        this.ftlMap.put("salaryScore",salaryScore);
+    public void setContractScore(String contractScore) {
+        this.ftlMap.put("contractScore",contractScore);
     }
 
-    public void setSalaryDesc(String salaryDesc) {
-        this.ftlMap.put("salaryDesc",salaryDesc);
+    public void setContractDesc(String contractDesc) {
+        this.ftlMap.put("contractDesc",contractDesc);
+    }
+
+    public void setInformationScore(String informationScore) {
+        this.ftlMap.put("informationScore",informationScore);
+    }
+
+    public void setInformationDesc(String informationDesc) {
+        this.ftlMap.put("informationDesc",informationDesc);
+    }
+
+    public void setOrganizingScore(String organizingScore) {
+        this.ftlMap.put("organizingScore",organizingScore);
+    }
+
+    public void setOrganizingDesc(String organizingDesc) {
+        this.ftlMap.put("organizingDesc",organizingDesc);
     }
 
     public void setPerformanceScore(String performanceScore) {

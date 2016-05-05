@@ -42,14 +42,13 @@ public class FtlUtil {
 
 	static final String PATTERN_STR = "\\$\\{((\\w)+)\\}";
 	
-	static void generateModelClass(String ftlFileName, String classFileName) throws IOException {
+	public static void generateModelClass(String ftlFileName, String classFileName) throws IOException {
 		Pattern pattern = Pattern.compile(PATTERN_STR);
 		
 		BufferedReader in = null;
 		String line = null;
 		try {
 			in = new BufferedReader(new FileReader(ftlFileName));
-
 			JavaClass javaClass = new JavaClass(classFileName);
 			
 			while ((line = in.readLine()) != null) { 
@@ -58,7 +57,6 @@ public class FtlUtil {
 					javaClass.addAttrItem(matcher.group(1));
 				}
 			}
-			
 			String classContent = FtlModelClassBuilder.getInstance().exportClass(javaClass);
 			
 			FileUtil.writeTextFile(classFileName, classContent, false);
@@ -66,21 +64,6 @@ public class FtlUtil {
 			if (in != null) {
 				in.close();
 			}
-		}
-		
-	}
-	
-	public static void main(String[] args) {
-		String exeFilePathStr = "src/seri/core/io/test/a.ftl";
-		String exeClassPathStr = "src/seri/core/io/test/ExeEvalMap.java";
-		
-		String ctrlFilePathStr = "src/seri/core/io/test/b.ftl";
-		String ctrlClassPathStr = "src/seri/core/io/test/CtrlEvalMap.java";
-		try {
-			generateModelClass(exeFilePathStr, exeClassPathStr);
-			generateModelClass(ctrlFilePathStr, ctrlClassPathStr);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }
