@@ -32,6 +32,12 @@ import java.util.regex.Pattern;
 import seri.core.io.builder.FtlModelClassBuilder;
 import seri.core.io.model.JavaClass;
 
+/**
+ * <code>FtlUtil</code> is a class that provides some operations about ".ftl" file
+ * @author Sericloud
+ * @date May 2, 2016
+ *
+ */
 public class FtlUtil {
 
 	static final String PATTERN_STR = "\\$\\{((\\w)+)\\}";
@@ -57,23 +63,22 @@ public class FtlUtil {
 			
 			FileUtil.writeTextFile(classFileName, classContent, false);
 		} finally {
-			// try {
 			if (in != null) {
 				in.close();
 			}
-			// } catch (Exception ex) {
-			// throw new ReadFileException(ex);
-			// }
 		}
 		
 	}
 	
 	public static void main(String[] args) {
 		String exeFilePathStr = "src/seri/core/io/test/a.ftl";
+		String exeClassPathStr = "src/seri/core/io/test/ExeEvalMap.java";
+		
 		String ctrlFilePathStr = "src/seri/core/io/test/b.ftl";
+		String ctrlClassPathStr = "src/seri/core/io/test/CtrlEvalMap.java";
 		try {
-			generateModelClass(exeFilePathStr, "src/seri/core/io/test/ExeEvalMap.java");
-			generateModelClass(ctrlFilePathStr, "src/seri/core/io/test/CtrlEvalMap.java");
+			generateModelClass(exeFilePathStr, exeClassPathStr);
+			generateModelClass(ctrlFilePathStr, ctrlClassPathStr);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

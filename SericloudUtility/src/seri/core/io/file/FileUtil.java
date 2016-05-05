@@ -97,13 +97,9 @@ public class FileUtil {
 				line = in.readLine();
 			}
 		} finally {
-			// try {
 			if (in != null) {
 				in.close();
 			}
-			// } catch (Exception ex) {
-			// throw new ReadFileException(ex);
-			// }
 		}
 		
 		return all.toString();
@@ -199,8 +195,6 @@ public class FileUtil {
 				parentPath.mkdirs();
 			}
 
-			// test
-			System.out.println("file Name : " + file.getAbsolutePath());
 			// Create a empty new file if the file does not exist.
 			file.createNewFile();
 
@@ -211,13 +205,9 @@ public class FileUtil {
 			out.write(content);
 			
 		} finally {
-			// try {
 			if (out != null) {
 				out.close();
 			}
-			// } catch (Exception ex) {
-			// throw new WriteFileException(ex);
-			// }
 		}
 		
 	}
